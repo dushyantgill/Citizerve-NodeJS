@@ -1,0 +1,56 @@
+{
+  "development": {
+    "serviceSettings": { 
+      "resourceAPISettings": { 
+        "hostname": "localhost",
+        "path": "/api/resources",
+        "port": "4000"
+      } 
+    },
+    "mongoDbSettings": {
+      "connectionString": "mongodb://localhost"
+    },
+    "appSettings": {
+      "port": 3000
+    },
+    "monitoringSettings": {
+      "metricsPort": 3009
+    }
+  },
+  "docker": {
+    "serviceSettings": { 
+      "resourceAPISettings": { 
+        "hostname": "host.docker.internal",
+        "path": "/api/resources",
+        "port": "4000"
+      } 
+    },
+    "mongoDbSettings": {
+      "connectionString": "mongodb://citizerve-mongodb-prod-us:<password>@citizerve-mongodb-prod-us.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@citizerve-mongodb-prod-us@"
+    },
+    "appSettings": {
+      "port": 3000
+    },
+    "monitoringSettings": {
+      "metricsPort": 3009
+    }
+  },
+  "production": {
+    "serviceSettings": { 
+      "resourceAPISettings": { 
+        "hostname": "citizerve-resource-api",
+        "path": "/api/resources",
+        "port": "80"
+      } 
+    },
+    "mongoDbSettings": {
+      "connectionString": "mongodb://citizerve-mongodb-prod-us:<password>@citizerve-mongodb-prod-us.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@citizerve-mongodb-prod-us@"
+    },
+    "appSettings": {
+      "port": 3000
+    },
+    "monitoringSettings": {
+      "metricsPort": 3009
+    }
+  }
+}

@@ -1,3 +1,6 @@
+# usage: to fire 25 get citizen requests per second 
+# with citizenapi service running on http://localhost:3000
+# ./load.sh 25 "http://localhost:3000"
 max="$1"
 START=$(date +%s);
 

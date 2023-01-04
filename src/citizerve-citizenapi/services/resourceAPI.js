@@ -26,6 +26,7 @@ function createDefaultResourceForNewCitizen(citizen, callback) {
     },
   );
   request.on('error', (err) => {
+    console.error(`Error while creating default resource for a citizen ${err}`);
     callback(err, null);
   });
   request.write(resourceData);
@@ -46,6 +47,7 @@ function deleteAllResourcesOfCitizen(citizenId, callback) {
     },
   );
   request.on('error', (err) => {
+    console.error(`Error while deleting all resources for a citizen ${err}`);
     callback(err, null);
   });
   request.end();

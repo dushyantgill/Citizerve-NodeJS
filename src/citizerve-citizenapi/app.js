@@ -24,17 +24,13 @@ app.use(responseTime((req, res, time) => {
     metrics.apiResponseTimeHistogram
       .labels(req.method, req.route.path, res.statusCode)
       .observe(time);
-    console.log(`${req.method} ${req.route.path} ${res.statusCode}`);
+    console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
   }
 }));
 
 app.use('/api', citizenRouter);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to citizerve-citizenapi');
-});
-
 app.listen(config.appSettings.port, () => {
-  console.log(`Running on port ${config.appSettings.port}`);
+  console.info(`Running on port ${config.appSettings.port}`);
   metrics.startMetricsServer();
 });

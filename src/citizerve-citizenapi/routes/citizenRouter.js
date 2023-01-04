@@ -10,9 +10,7 @@ function routes(Citizen) {
       citizen.save();
       resourceAPI.createDefaultResourceForNewCitizen(citizen, (err, data) => {
         if (err) {
-          console.log(`Error while creating default resource for new citizen ${err}`);
-        } else {
-          console.log(`Created default resource for new citizen ${data}`);
+          console.error(`Error while creating default resource for new citizen ${err}`);
         }
       });
       return res.status(201).json(citizen);
@@ -39,6 +37,7 @@ function routes(Citizen) {
       }
       Citizen.find(query, (err, citizens) => {
         if (err) {
+          console.error(`Error while searching citizens with query: ${query}: ${err}`);
           return res.send(err);
         }
         return res.json(citizens);
@@ -48,6 +47,7 @@ function routes(Citizen) {
     const query = { citizenId: req.params.citizenId };
     Citizen.find(query, (err, citizens) => {
       if (err) {
+        console.error(`Error while getting citizen with query: ${query}: ${err}`);
         return res.send(err);
       }
       if (citizens[0]) {
@@ -78,6 +78,7 @@ function routes(Citizen) {
       });
       citizen.save((err) => {
         if (err) {
+          console.error(`Error while updating citizen: ${citizen.citizenId}: ${err}`);
           return res.send(err);
         }
         return res.json(citizen);
@@ -91,9 +92,7 @@ function routes(Citizen) {
         }
         resourceAPI.deleteAllResourcesOfCitizen(citizenId, (error, statusCode) => {
           if (error) {
-            console.log(`Error while deleting all resources of citizen ${error}`);
-          } else {
-            console.log(`Deleted all resources of citizen ${statusCode}`);
+            console.error(`Error while deleting all resources of citizen ${error}`);
           }
         });
         return res.sendStatus(204);

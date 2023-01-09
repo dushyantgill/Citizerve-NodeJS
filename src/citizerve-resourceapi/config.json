@@ -12,7 +12,7 @@
   },
   "docker": {
     "mongoDbSettings": {
-      "connectionString": "mongodb://citizerve-mongodb-prod-us:<password>@citizerve-mongodb-prod-us.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@citizerve-mongodb-prod-us@"
+      "connectionString": "mongodb://citizerve:c8yHGEAvWH%2BIdn@host.docker.internal:27018/?authMechanism=DEFAULT"
     },
     "appSettings": {
       "port": 4000

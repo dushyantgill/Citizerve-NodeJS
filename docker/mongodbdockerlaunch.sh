@@ -1,0 +1,1 @@
+docker run --name mongodb -d -p 27018:27017 -e MONGO_INITDB_ROOT_USERNAME=citizerve -e MONGO_INITDB_ROOT_PASSWORD=c8yHGEAvWH+Idn mongo

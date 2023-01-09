@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const responseTime = require('response-time');
 const metrics = require('./monitoring/metrics');
+const chaos = require('./chaos/chaos');
 const config = require('./config.json')[process.env.NODE_ENV || 'development'];
 
 const app = express();
@@ -24,17 +25,14 @@ app.use(responseTime((req, res, time) => {
     metrics.apiResponseTimeHistogram
       .labels(req.method, req.route.path, res.statusCode)
       .observe(time);
-    console.log(`${req.method} ${req.route.path} ${res.statusCode}`);
+    console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
   }
 }));
 
+app.use(chaos.induceLatency);
 app.use('/api', resourceRouter);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to citizerve-resourceapi');
-});
-
 app.listen(config.appSettings.port, () => {
-  console.log(`Running on port ${config.appSettings.port}`);
+  console.info(`Running on port ${config.appSettings.port}`);
   metrics.startMetricsServer();
 });

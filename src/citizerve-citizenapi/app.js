@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const responseTime = require('response-time');
 const metrics = require('./monitoring/metrics');
+const chaos = require('./chaos/chaos');
 const config = require('./config.json')[process.env.NODE_ENV || 'development'];
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(responseTime((req, res, time) => {
   }
 }));
 
+app.use(chaos.induceMemoryLeak);
 app.use('/api', citizenRouter);
 
 app.listen(config.appSettings.port, () => {

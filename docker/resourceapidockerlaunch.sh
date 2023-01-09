@@ -1,0 +1,1 @@
+docker run --name citizerve-resourceapi -d -p 4000:4000 -p 4009:4009 citizerve-resourceapi

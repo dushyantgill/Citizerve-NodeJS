@@ -13,7 +13,7 @@ const resource = Resource.default().merge(
 const provider = new NodeTracerProvider({ resource });
 const exporter = new ConsoleSpanExporter();
 const processor = new BatchSpanProcessor(exporter);
-provider.addSpanProcessor(processor);
+// provider.addSpanProcessor(processor);
 
 provider.register();
 

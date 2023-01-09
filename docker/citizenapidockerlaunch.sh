@@ -1,0 +1,1 @@
+docker run --name citizerve-citizenapi -d -p 3000:3000 -p 3009:3009 citizerve-citizenapi

@@ -1,6 +1,7 @@
+#!/bin/bash
 # usage: to create a citizen with specific citizenId that causes 
-# memory leak in citizenapi service running on http://localhost:3000
-# ./leakMemory.sh "http://localhost:3000"
+# memory leak in citizenapi service running on http://localhost:8081
+# ./leakMemory.sh "http://localhost:8081"
 START=$(date +%s);
 
 get () {

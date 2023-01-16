@@ -25,7 +25,7 @@ else
 
 const sdk = new opentelemetry.NodeSDK({
   resource: new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: 'citizerve-citizenapi',
+    [SemanticResourceAttributes.SERVICE_NAME]: 'citizerve-resourceapi',
     [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: process.env.NODE_ENV,
   }),
   traceExporter: exporter,

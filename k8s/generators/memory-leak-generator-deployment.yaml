@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory-leak-generator
+  namespace: citizerve
+  labels:
+    app: memory-leak-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memory-leak-generator
+  strategy: {}
+  template:
+    metadata:
+      name: memory-leak-generator
+      namespace: citizerve
+      labels:
+        app: memory-leak-generator
+    spec:
+      containers:
+        - image: mcpacr2.azurecr.io/memoryleakgenerator:v2
+          name: memory-leak-generator
+          resources: {}
+      restartPolicy: Always

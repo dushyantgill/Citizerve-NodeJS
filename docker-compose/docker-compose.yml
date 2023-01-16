@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:4.4.18
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    ports:
+      - "27017:27017"
+    volumes:
+      - db:/data/db 
+  resourceapi:
+    depends_on:
+      - mongodb
+    build: ../src/citizerve-resourceapi
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "8082:8082"
+    environment:
+      - NODE_ENV=$NODE_ENV
+      - OTEL_EXPORTER_ZIPKIN_ENDPOINT=$OTEL_EXPORTER_ZIPKIN_ENDPOINT
+  citizenapi:
+    depends_on:
+      - mongodb
+      - resourceapi
+    build: ../src/citizerve-citizenapi
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "8081:8081"
+    environment:
+      - NODE_ENV=$NODE_ENV
+      - OTEL_EXPORTER_ZIPKIN_ENDPOINT=$OTEL_EXPORTER_ZIPKIN_ENDPOINT
+
+volumes:
+  db:

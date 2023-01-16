@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: citizenapi
+  namespace: citizerve
+  labels:
+    app: citizenapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: citizenapi
+  strategy: {}
+  template:
+    metadata:
+      name: citizenapi
+      namespace: citizerve
+      labels:
+        app: citizenapi
+    spec:
+      containers:
+        - name: citizenapi
+          image: mcpacr2.azurecr.io/citizenapi:v4
+          ports:
+            - containerPort: 8081
+          resources: {}
+          env:
+            - name: MONGO_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: citizerve-secret
+                  key: mongo-connection-string          
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: NODE_ENV
+            - name: OTEL_EXPORTER_ZIPKIN_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: OTEL_EXPORTER_ZIPKIN_ENDPOINT
+            - name: USE_ZIPKIN
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: USE_ZIPKIN
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: citizenapi-service
+  namespace: citizerve
+  labels:
+    app: citizenapi
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: citizenapi

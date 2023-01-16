@@ -1,7 +1,8 @@
+#!/bin/bash
 # usage: to create a citizen with specific citizenId that 
 # increases api response time for the post resource API 
-# with citizenapi service running on http://localhost:3000
-# ./latency.sh "http://localhost:3000"
+# with citizenapi service running on http://localhost:8081
+# ./latency.sh "http://localhost:8081"
 START=$(date +%s);
 
 get () {

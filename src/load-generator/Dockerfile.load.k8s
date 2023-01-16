@@ -1,0 +1,13 @@
+FROM nginx:latest
+
+WORKDIR /load-generator
+
+COPY . .
+
+RUN apt-get update && \
+    apt-get install dos2unix && \
+    apt-get clean
+
+RUN dos2unix ./load.sh
+
+CMD /bin/bash -c "./load.sh 25 'http://citizenapi-service:8081'"

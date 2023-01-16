@@ -4,14 +4,14 @@
       "resourceAPISettings": { 
         "hostname": "localhost",
         "path": "/api/resources",
-        "port": "4000"
+        "port": "8082"
       } 
     },
     "mongoDbSettings": {
       "connectionString": "mongodb://localhost"
     },
     "appSettings": {
-      "port": 3000
+      "port": 8081
     },
     "monitoringSettings": {
       "metricsPort": 3009
@@ -22,14 +22,47 @@
       "resourceAPISettings": { 
         "hostname": "host.docker.internal",
         "path": "/api/resources",
-        "port": "4000"
+        "port": "8082"
       } 
     },
     "mongoDbSettings": {
       "connectionString": "mongodb://citizerve:c8yHGEAvWH%2BIdn@host.docker.internal:27018/?authMechanism=DEFAULT"
     },
     "appSettings": {
-      "port": 3000
+      "port": 8081
+    },
+    "monitoringSettings": {
+      "metricsPort": 3009
+    }
+  },
+  "docker-compose": {
+    "serviceSettings": { 
+      "resourceAPISettings": { 
+        "hostname": "resourceapi",
+        "path": "/api/resources",
+        "port": "8082"
+      } 
+    },
+    "mongoDbSettings": {
+      "connectionString": "mongodb://root:123456@mongodb:27017/Citizerve?authSource=admin"
+    },
+    "appSettings": {
+      "port": 8081
+    },
+    "monitoringSettings": {
+      "metricsPort": 3009
+    }
+  }, 
+  "kubernetes": {
+    "serviceSettings": { 
+      "resourceAPISettings": { 
+        "hostname": "resourceapi-service",
+        "path": "/api/resources",
+        "port": "8082"
+      } 
+    },
+    "appSettings": {
+      "port": 8081
     },
     "monitoringSettings": {
       "metricsPort": 3009
@@ -47,7 +80,7 @@
       "connectionString": "mongodb://citizerve-mongodb-prod-us:<password>@citizerve-mongodb-prod-us.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@citizerve-mongodb-prod-us@"
     },
     "appSettings": {
-      "port": 3000
+      "port": 8081
     },
     "monitoringSettings": {
       "metricsPort": 3009

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  load-generator:
+    depends_on:
+      - mongodb
+      - citizenapi
+      - resourceapi
+      - prometheus
+      - grafana
+      - zipkin
+    build: ../src/load-generator
+    restart: unless-stopped

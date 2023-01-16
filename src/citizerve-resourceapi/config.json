@@ -4,7 +4,7 @@
       "connectionString": "mongodb://localhost"
     },
     "appSettings": {
-      "port": 4000
+      "port": 8082
     },
     "monitoringSettings": {
       "metricsPort": 4009
@@ -15,18 +15,37 @@
       "connectionString": "mongodb://citizerve:c8yHGEAvWH%2BIdn@host.docker.internal:27018/?authMechanism=DEFAULT"
     },
     "appSettings": {
-      "port": 4000
+      "port": 8082
     },
     "monitoringSettings": {
       "metricsPort": 4009
     }
   },
+  "docker-compose": {
+    "mongoDbSettings": {
+      "connectionString": "mongodb://root:123456@mongodb:27017/Citizerve?authSource=admin"
+    },
+    "appSettings": {
+      "port": 8082
+    },
+    "monitoringSettings": {
+      "metricsPort": 4009
+    }
+  },
+  "kubernetes": {
+    "appSettings": {
+      "port": 8082
+    },
+    "monitoringSettings": {
+      "metricsPort": 4009
+    }
+  },  
   "production": {
     "mongoDbSettings": {
       "connectionString": "mongodb://citizerve-mongodb-prod-us:<password>@citizerve-mongodb-prod-us.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@citizerve-mongodb-prod-us@"
     },
     "appSettings": {
-      "port": 4000
+      "port": 8082
     },
     "monitoringSettings": {
       "metricsPort": 4009

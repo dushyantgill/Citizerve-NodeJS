@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: latency-generator
+  namespace: citizerve
+  labels:
+    app: latency-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: latency-generator
+  strategy: {}
+  template:
+    metadata:
+      name: latency-generator
+      namespace: citizerve
+      labels:
+        app: latency-generator
+    spec:
+      containers:
+        - image: mcpacr2.azurecr.io/latencygenerator:v2
+          name: latency-generator
+          resources: {}
+      restartPolicy: Always

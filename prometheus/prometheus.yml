@@ -1,0 +1,34 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: []
+    scheme: http
+    timeout: 10s
+    api_version: v1
+scrape_configs:
+  - job_name: prometheus
+    honor_timestamps: true
+    honor_labels: true
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+      - targets:
+        - prometheus:9090
+  - job_name: "citizenapi"
+    metrics_path: /metrics
+    honor_timestamps: true
+    honor_labels: true
+    static_configs:
+      - targets:
+          - citizenapi:3009
+  - job_name: "resourceapi"
+    metrics_path: /metrics
+    honor_timestamps: true
+    honor_labels: true
+    static_configs:
+      - targets:
+          - resourceapi:4009

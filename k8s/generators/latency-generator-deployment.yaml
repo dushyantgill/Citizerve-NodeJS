@@ -19,7 +19,8 @@ spec:
         app: latency-generator
     spec:
       containers:
-        - image: mcpacr2.azurecr.io/latencygenerator:v2
+        - image: mpapas/latencygenerator:latest
+          imagePullPolicy: Always
           name: latency-generator
           resources: {}
       restartPolicy: Always

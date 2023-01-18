@@ -19,7 +19,8 @@ spec:
         app: load-generator
     spec:
       containers:
-        - image: mcpacr2.azurecr.io/loadgenerator:v1
+        - image: mpapas/loadgenerator:latest
+          imagePullPolicy: Always
           name: load-generator
           resources: {}
       restartPolicy: Always

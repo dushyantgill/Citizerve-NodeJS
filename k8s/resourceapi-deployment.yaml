@@ -20,7 +20,8 @@ spec:
     spec:
       containers:
         - name: resourceapi
-          image: mcpacr2.azurecr.io/resourceapi:v4
+          image: mpapas/resourceapi:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8082
           resources: {}

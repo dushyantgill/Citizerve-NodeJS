@@ -19,7 +19,8 @@ spec:
         app: memory-leak-generator
     spec:
       containers:
-        - image: mcpacr2.azurecr.io/memoryleakgenerator:v2
+        - image: mpapas/memoryleakgenerator:latest
+          imagePullPolicy: Always
           name: memory-leak-generator
           resources: {}
       restartPolicy: Always

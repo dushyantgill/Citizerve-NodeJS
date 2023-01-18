@@ -20,10 +20,15 @@ spec:
     spec:
       containers:
         - name: citizenapi
-          image: mcpacr2.azurecr.io/citizenapi:v4
+          image: mpapas/citizenapi:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
-          resources: {}
+          resources:
+            limits:
+              memory: 600Mi
+            requests:
+              memory: 300Mi
           env:
             - name: MONGO_CONNECTION_STRING
               valueFrom:

@@ -9,7 +9,7 @@ const config = require('./config.json')[process.env.NODE_ENV || 'development'];
 const app = express();
 
 const environment = process.env.NODE_ENV || 'development';
-var mongoConnectionString = null;
+let mongoConnectionString = null;
 
 if (environment === 'kubernetes') {
   mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
@@ -42,6 +42,8 @@ app.use(responseTime((req, res, time) => {
 }));
 
 app.use(chaos.induceMemoryLeak);
+app.use(chaos.induceSNATPoolExhaustion);
+
 app.use('/api', citizenRouter);
 
 app.listen(config.appSettings.port, () => {

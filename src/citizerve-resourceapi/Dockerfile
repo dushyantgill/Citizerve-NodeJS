@@ -1,8 +1,10 @@
 FROM node:lts-alpine
-
-WORKDIR /citizerve-resourceapi
-COPY package.json .
-RUN npm install
+ENV NODE_ENV=docker
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
 COPY . .
 EXPOSE 8082
-CMD npm run start
+RUN chown -R node /usr/src/app
+USER node
+CMD ["node", "app.js"]

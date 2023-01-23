@@ -7,7 +7,8 @@
       "port": 8082
     },
     "monitoringSettings": {
-      "metricsPort": 4009
+      "metricsPort": 4009,
+      "tracesEndpoint": "http://localhost:4318"
     }
   },
   "docker": {
@@ -18,7 +19,8 @@
       "port": 8082
     },
     "monitoringSettings": {
-      "metricsPort": 4009
+      "metricsPort": 4009,
+      "traceEndpoint": "http://host.docker.internal:4318"
     }
   },
   "docker-compose": {

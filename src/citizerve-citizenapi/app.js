@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const responseTime = require('response-time');
+const openTelemetry = require('@opentelemetry/sdk-node');
 const metrics = require('./monitoring/metrics');
 const chaos = require('./chaos/chaos');
 const config = require('./config.json')[process.env.NODE_ENV || 'development'];
@@ -13,9 +14,7 @@ let mongoConnectionString = null;
 
 if (environment === 'kubernetes') {
   mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
-}
-else
-{
+} else {
   mongoConnectionString = config.mongoDbSettings.connectionString;
 }
 
@@ -33,11 +32,33 @@ app.use(bodyParser.json());
 
 app.use(responseTime((req, res, time) => {
   if (req?.route?.path) {
-    metrics.apiResponseTimeHistogram
-      .labels(req.method, req.route.path, res.statusCode)
-      .observe(time);
-
-    console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
+    const currentSpan = openTelemetry.api.trace.getSpan(openTelemetry.api.context.active());
+    metrics.apiResponseLatencyMetric.record(
+      time,
+      {
+        app: 'citizerve-citizenapi',
+        method: req.method,
+        path: req.route.path,
+        status: res.statusCode,
+      },
+      {
+        traceId: currentSpan.spanContext().traceId,
+        spanId: currentSpan.spanContext().spanId,
+      },
+    );
+    metrics.apiRequestCountMetric.add(
+      1,
+      {
+        app: 'citizerve-citizenapi',
+        method: req.method,
+        path: req.route.path,
+        status: res.statusCode,
+      },
+      {
+        traceId: currentSpan.spanContext().traceId,
+        spanId: currentSpan.spanContext().spanId,
+      },
+    );
   }
 }));
 
@@ -48,6 +69,5 @@ app.use('/api', citizenRouter);
 
 app.listen(config.appSettings.port, () => {
   console.info(`Running on port ${config.appSettings.port}`);
-
-  metrics.startMetricsServer();
+  metrics.startNodePlatformMetricsServer();
 });

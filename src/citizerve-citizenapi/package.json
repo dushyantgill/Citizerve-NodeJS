@@ -7,16 +7,17 @@
     "dev": "nodemon --require './monitoring/tracing.js' app.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --require ./monitoring/tracing.js app.js"
+    "start": "node --require './monitoring/tracing.js' app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@opentelemetry/api": "^1.3.0",
     "@opentelemetry/auto-instrumentations-node": "^0.36.0",
-    "@opentelemetry/exporter-zipkin": "^1.9.0",
+    "@opentelemetry/exporter-prometheus": "^0.35.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.35.0",
     "@opentelemetry/instrumentation": "^0.35.0",
     "@opentelemetry/resources": "^1.8.0",
+    "@opentelemetry/sdk-metrics": "^1.9.0",
     "@opentelemetry/sdk-node": "^0.34.0",
     "@opentelemetry/sdk-trace-base": "^1.8.0",
     "@opentelemetry/sdk-trace-node": "^1.8.0",

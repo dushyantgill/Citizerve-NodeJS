@@ -1,28 +1,14 @@
-/*tracing.js*/
+/* tracing.js */
 // Require dependencies
-const opentelemetry = require("@opentelemetry/sdk-node");
-const { getNodeAutoInstrumentations } = require("@opentelemetry/auto-instrumentations-node");
-const { ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');
-const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
+const opentelemetry = require('@opentelemetry/sdk-node');
+const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
 const { Resource } = require('@opentelemetry/resources');
 const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventions');
-const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 
-// For troubleshooting, set the log level to DiagLogLevel.DEBUG
-diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
+const config = require('../config.json')[process.env.NODE_ENV || 'development'];
 
-var exporter = null;
-
-if (process.env.USE_ZIPKIN === 'true') {
-  console.log('Using Zipkin exporter');
-  exporter = new ZipkinExporter()
-}
-else
-{
-  console.log('Using Console exporter');
-  exporter = new ConsoleSpanExporter();
-}
-
+const exporter = new OTLPTraceExporter({ url: `${config.monitoringSettings.tracesEndpoint}/v1/traces` });
 const sdk = new opentelemetry.NodeSDK({
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'citizerve-citizenapi',
@@ -33,5 +19,5 @@ const sdk = new opentelemetry.NodeSDK({
 });
 
 sdk.start()
-  .then(() => { console.log('Tracing initialized'); })
-  .catch((error) => console.log('Error initializing tracing', error));
+  .then(() => { console.info('Tracing initialized'); })
+  .catch((error) => console.error('Error initializing tracing', error));

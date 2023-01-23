@@ -9,13 +9,11 @@ const config = require('./config.json')[process.env.NODE_ENV || 'development'];
 const app = express();
 
 const environment = process.env.NODE_ENV || 'development';
-var mongoConnectionString = null;
+let mongoConnectionString = null;
 
 if (environment === 'kubernetes') {
   mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
-}
-else
-{
+} else {
   mongoConnectionString = config.mongoDbSettings.connectionString;
 }
 
@@ -37,7 +35,7 @@ app.use(responseTime((req, res, time) => {
       .labels(req.method, req.route.path, res.statusCode)
       .observe(time);
 
-    console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
+    // console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
   }
 }));
 
@@ -46,6 +44,5 @@ app.use('/api', resourceRouter);
 
 app.listen(config.appSettings.port, () => {
   console.info(`Running on port ${config.appSettings.port}`);
-
   metrics.startMetricsServer();
 });

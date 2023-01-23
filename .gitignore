@@ -130,3 +130,5 @@ dist
 .pnp.*
 
 .vscode
+
+.DS_Store

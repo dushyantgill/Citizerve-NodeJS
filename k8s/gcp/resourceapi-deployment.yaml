@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resourceapi
+  namespace: citizerve
+  labels:
+    app: resourceapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resourceapi
+  strategy: {}
+  template:
+    metadata:
+      name: resourceapi
+      namespace: citizerve
+      labels:
+        app: resourceapi
+    spec:
+      containers:
+        - name: resourceapi
+          image: mpapas/resourceapi:gcpV4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+            - containerPort: 4009
+          resources: {}
+          env:
+            - name: MONGO_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: citizerve-secret
+                  key: mongo-connection-string          
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: NODE_ENV
+            - name: OTEL_EXPORTER_ZIPKIN_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: OTEL_EXPORTER_ZIPKIN_ENDPOINT
+            - name: USE_ZIPKIN
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: USE_ZIPKIN                  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resourceapi-service
+  namespace: citizerve
+  labels:
+    app: resourceapi
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+  selector:
+    app: resourceapi

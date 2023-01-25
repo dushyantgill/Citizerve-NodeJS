@@ -7,11 +7,13 @@
     "dev": "nodemon --require './monitoring/tracing.js' app.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --require ./monitoring/tracing.js app.js"
+    "start": "node --require ./monitoring/tracing.js app.js",
+    "startGKE": "node --require ./monitoring/tracingGCP.js app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/opentelemetry-cloud-trace-exporter": "^1.2.0",
     "@opentelemetry/api": "^1.3.0",
     "@opentelemetry/auto-instrumentations-node": "^0.36.0",
     "@opentelemetry/exporter-prometheus": "^0.35.0",

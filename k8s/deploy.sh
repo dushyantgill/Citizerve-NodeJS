@@ -14,6 +14,8 @@ kubectl apply -f zipkin/zipkin-deployment.yaml
 kubectl apply -f resourceapi-deployment.yaml
 kubectl apply -f citizenapi-deployment.yaml
 
+kubectl apply -f jaeger/jaeger-deployment.yaml
+
 kubectl apply -f generators/load-generator-deployment.yaml
 kubectl apply -f generators/latency-generator-deployment.yaml
 kubectl apply -f generators/memory-leak-generator-deployment.yaml

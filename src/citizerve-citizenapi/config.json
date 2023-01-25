@@ -48,13 +48,15 @@
       } 
     },
     "mongoDbSettings": {
-      "connectionString": "mongodb://root:123456@mongodb:27017/Citizerve?authSource=admin"
+      "connectionString": "mongodb://root:218741281@mongodb:27017/Citizerve?authSource=admin"
     },
     "appSettings": {
       "port": 8081
     },
     "monitoringSettings": {
-      "metricsPort": 3009
+      "nodePlatformMetricsPort": 3009,
+      "appOTelMetricsPort": 3019,
+      "tracesEndpoint": "http://jaeger-service:4318"
     }
   }, 
   "kubernetes": {
@@ -69,7 +71,9 @@
       "port": 8081
     },
     "monitoringSettings": {
-      "metricsPort": 3009
+      "nodePlatformMetricsPort": 3009,
+      "appOTelMetricsPort": 3019,
+      "tracesEndpoint": "http://jaeger-service:4318"      
     }
   }
 }

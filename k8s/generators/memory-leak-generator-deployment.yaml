@@ -19,7 +19,7 @@ spec:
         app: memory-leak-generator
     spec:
       containers:
-        - image: mpapas/memoryleakgenerator:latest
+        - image: mpapas/memoryleakgenerator:v1
           imagePullPolicy: Always
           name: memory-leak-generator
           resources: {}

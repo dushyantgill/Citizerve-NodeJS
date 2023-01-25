@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-deployment
+  namespace: citizerve
+  labels:
+    app: jaeger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger
+  template:
+    metadata:
+      namespace: citizerve
+      labels:
+        app: jaeger
+    spec:
+      containers:
+      - name: jaeger
+        image: jaegertracing/all-in-one:latest
+        ports:
+          - containerPort: 16686
+          - containerPort: 4318
+        env:
+          - name: COLLECTOR_ZIPKIN_HOST_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: citizerve-configmap
+                key: COLLECTOR_ZIPKIN_HOST_PORT          
+          - name: COLLECTOR_OTLP_ENABLED
+            valueFrom:
+              configMapKeyRef:
+                name: citizerve-configmap
+                key: COLLECTOR_OTLP_ENABLED       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger-service
+  namespace: citizerve
+  labels:
+    app: jaeger
+spec:
+  selector:
+    app: jaeger
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 16686
+      targetPort: 16686

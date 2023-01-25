@@ -59,6 +59,8 @@ app.use(responseTime((req, res, time) => {
         spanId: currentSpan.spanContext().spanId,
       },
     );
+
+    console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
   }
 }));
 

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snat-ex
+  namespace: citizerve
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: snat-ex
+  template:
+    metadata:
+      namespace: citizerve    
+      labels:
+        app: snat-ex
+    spec:
+      containers:
+      - name: snat-ex
+        image: sturrent/snat-exec:latest

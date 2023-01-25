@@ -15,26 +15,33 @@ services:
   resourceapi:
     depends_on:
       - mongodb
-    build: ../src/citizerve-resourceapi
+    build: 
+      context: ../src/citizerve-resourceapi
+      dockerfile: Dockerfile.k8s    
     restart: unless-stopped
     env_file: ./.env
     ports:
       - "8082:8082"
+      - "4009:4009"
     environment:
       - NODE_ENV=$NODE_ENV
-      - OTEL_EXPORTER_ZIPKIN_ENDPOINT=$OTEL_EXPORTER_ZIPKIN_ENDPOINT
-  citizenapi:
+      #- OTEL_EXPORTER_ZIPKIN_ENDPOINT=$OTEL_EXPORTER_ZIPKIN_ENDPOINT
+  citizenapi-service:
     depends_on:
       - mongodb
       - resourceapi
-    build: ../src/citizerve-citizenapi
+    build: 
+      context: ../src/citizerve-citizenapi
+      dockerfile: Dockerfile.k8s        
     restart: unless-stopped
     env_file: ./.env
     ports:
       - "8081:8081"
+      - "3009:3009"
+      - "3019:3019"
     environment:
       - NODE_ENV=$NODE_ENV
-      - OTEL_EXPORTER_ZIPKIN_ENDPOINT=$OTEL_EXPORTER_ZIPKIN_ENDPOINT
+      #- OTEL_EXPORTER_ZIPKIN_ENDPOINT=$OTEL_EXPORTER_ZIPKIN_ENDPOINT
 
 volumes:
   db:

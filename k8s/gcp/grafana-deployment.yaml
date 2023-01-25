@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment
+  namespace: citizerve
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      namespace: citizerve
+      labels:
+        app: grafana
+    spec:
+      securityContext:
+        runAsUser: 472
+        runAsGroup: 472
+        fsGroup: 472
+      containers:
+        - name: grafana
+          image: grafana/grafana:9.3.2
+          ports:
+            - name: web
+              containerPort: 3000
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/grafana/provisioning/datasources
+              name: grafana-ds
+            - mountPath: /var/lib/grafana
+              name: grafana-data
+      volumes:
+        - name: grafana-ds
+          persistentVolumeClaim:
+            claimName: grafana-ds-pvc
+        - name: grafana-data
+          persistentVolumeClaim:
+            claimName: grafana-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service
+  namespace: citizerve
+  labels:
+    app: grafana
+spec:
+  type: LoadBalancer
+  selector:
+    app: grafana
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

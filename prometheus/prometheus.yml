@@ -1,7 +1,7 @@
 global:
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  evaluation_interval: 15s
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  scrape_timeout: 10s # scrape_timeout - global default is 10s.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
 alerting:
   alertmanagers:
   - static_configs:
@@ -16,19 +16,25 @@ scrape_configs:
     metrics_path: /metrics
     scheme: http
     static_configs:
-      - targets:
-        - prometheus:9090
+      - targets: ['prometheus:9090']
   - job_name: "citizenapi"
     metrics_path: /metrics
+    scheme: http
     honor_timestamps: true
     honor_labels: true
     static_configs:
-      - targets:
-          - citizenapi:3009
+      - targets: ['citizenapi-service:3009']
+  - job_name: "citizenapiotel"
+    metrics_path: /metrics
+    scheme: http
+    honor_timestamps: true
+    honor_labels: true
+    static_configs:
+      - targets: ['citizenapi-service:3019']
   - job_name: "resourceapi"
     metrics_path: /metrics
+    scheme: http
     honor_timestamps: true
     honor_labels: true
     static_configs:
-      - targets:
-          - resourceapi:4009
+      - targets: ['resourceapi:4009']

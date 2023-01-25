@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: no-start-generator
+  namespace: citizerve
+  labels:
+    app: no-start-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: no-start-generator
+  strategy: {}
+  template:
+    metadata:
+      name: no-start-generator
+      namespace: citizerve
+      labels:
+        app: no-start-generator
+    spec:
+      containers:
+        - image: bash:latest
+          command:
+            - "bin/bash"
+            - "-c"
+            - "while true; do echo hello; sleep 10;done"
+          imagePullPolicy: Always
+          name: no-start-generator
+          resources:
+            limits:
+              memory: 3Gi
+            requests:
+              memory: 2Gi
+      restartPolicy: Always

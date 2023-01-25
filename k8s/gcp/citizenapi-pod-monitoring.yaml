@@ -1,0 +1,15 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: citizenapi-podmonitoring
+spec:
+  selector:
+    matchLabels:
+      app: citizenapi
+  endpoints:
+  - port: 3009
+    interval: 10s
+    scheme: http
+  - port: 3019
+    interval: 10s
+    scheme: http

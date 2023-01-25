@@ -6,4 +6,6 @@ metadata:
 data:
   NODE_ENV: kubernetes
   OTEL_EXPORTER_ZIPKIN_ENDPOINT: http://zipkin-service:9411/api/v2/spans
-  USE_ZIPKIN: 'true'
+  USE_ZIPKIN: 'false'
+  COLLECTOR_ZIPKIN_HOST_PORT: ':9411'
+  COLLECTOR_OTLP_ENABLED: 'true'

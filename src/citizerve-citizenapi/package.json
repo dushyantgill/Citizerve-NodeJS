@@ -7,7 +7,7 @@
     "dev": "nodemon --require './monitoring/tracing.js' app.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --require './monitoring/tracing.js' app.js"
+    "start": "node --require ./monitoring/tracing.js app.js"
   },
   "author": "",
   "license": "ISC",

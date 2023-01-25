@@ -1,10 +1,10 @@
 version: '3.8'
 
 services:
-  load-generator:
+  latency-generator:
     depends_on:
-      - citizenapi-service  
+      - citizenapi-service    
     build:
       context: ../src/load-generator
-      dockerfile: Dockerfile.load.k8s
+      dockerfile: Dockerfile.latency.k8s
     restart: unless-stopped

@@ -25,13 +25,14 @@
   },
   "docker-compose": {
     "mongoDbSettings": {
-      "connectionString": "mongodb://root:123456@mongodb:27017/Citizerve?authSource=admin"
+      "connectionString": "mongodb://root:218741281@mongodb:27017/Citizerve?authSource=admin"
     },
     "appSettings": {
       "port": 8082
     },
     "monitoringSettings": {
-      "metricsPort": 4009
+      "metricsPort": 4009,
+      "tracesEndpoint": "http://jaeger-service:4318"
     }
   },
   "kubernetes": {
@@ -39,7 +40,8 @@
       "port": 8082
     },
     "monitoringSettings": {
-      "metricsPort": 4009
+      "metricsPort": 4009,
+      "tracesEndpoint": "http://jaeger-service:4318"      
     }
   },  
   "production": {
@@ -50,7 +52,8 @@
       "port": 8082
     },
     "monitoringSettings": {
-      "metricsPort": 4009
+      "metricsPort": 4009,
+      "tracesEndpoint": "http://jaeger-service:4318"      
     }
   }
 }

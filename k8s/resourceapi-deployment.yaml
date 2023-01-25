@@ -20,10 +20,11 @@ spec:
     spec:
       containers:
         - name: resourceapi
-          image: mpapas/resourceapi:latest
+          image: mpapas/resourceapi:v4
           imagePullPolicy: Always
           ports:
             - containerPort: 8082
+            - containerPort: 4009
           resources: {}
           env:
             - name: MONGO_CONNECTION_STRING

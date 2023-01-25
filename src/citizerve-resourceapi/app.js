@@ -35,7 +35,7 @@ app.use(responseTime((req, res, time) => {
       .labels(req.method, req.route.path, res.statusCode)
       .observe(time);
 
-    // console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
+    console.info(`API call: ${req.method} ${req.route.path} ${res.statusCode} responded in ${time}ms`);
   }
 }));
 

@@ -20,10 +20,12 @@ spec:
     spec:
       containers:
         - name: citizenapi
-          image: mpapas/citizenapi:latest
+          image: mpapas/citizenapi:v4
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
+            - containerPort: 3009
+            - containerPort: 3019
           resources:
             limits:
               memory: 600Mi

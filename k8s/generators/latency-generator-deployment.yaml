@@ -19,7 +19,7 @@ spec:
         app: latency-generator
     spec:
       containers:
-        - image: mpapas/latencygenerator:latest
+        - image: mpapas/latencygenerator:v1
           imagePullPolicy: Always
           name: latency-generator
           resources: {}

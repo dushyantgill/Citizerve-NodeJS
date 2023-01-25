@@ -19,7 +19,7 @@ spec:
         app: load-generator
     spec:
       containers:
-        - image: mpapas/loadgenerator:latest
+        - image: mpapas/loadgenerator:v1
           imagePullPolicy: Always
           name: load-generator
           resources: {}

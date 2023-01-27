@@ -11,7 +11,7 @@ function induceMemoryLeak(req, res, next) {
         if (originalThing) { console.info('Leaking memory ...'); }
       }
       thing = {
-        longStr: new Array(1000000).join('*'),
+        longStr: new Array(10000000).join('*'),
         someMethod: function () {
           console.info('Leaking memory ...');
         }

@@ -7,4 +7,4 @@ COPY . .
 EXPOSE 8082
 RUN chown -R node /usr/src/app
 USER node
-CMD ["node", "app.js"]
+CMD ["node", "--require", "./monitoring/tracing.js", "app.js"]

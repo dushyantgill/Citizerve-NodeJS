@@ -10,7 +10,8 @@ spec:
   selector:
     matchLabels:
       app: resourceapi
-  strategy: {}
+  strategy: 
+    type: Recreate
   template:
     metadata:
       name: resourceapi
@@ -25,7 +26,11 @@ spec:
           ports:
             - containerPort: 8082
             - containerPort: 4009
-          resources: {}
+          resources:
+            limits:
+              memory: 400Mi
+            requests:
+              memory: 200Mi
           env:
             - name: MONGO_CONNECTION_STRING
               valueFrom:

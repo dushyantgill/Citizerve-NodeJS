@@ -1,3 +1,6 @@
+# Description: 
+# Deployment for citizenapi specifically for GCP. Deploys a container image of the API that uses
+#   Cloud Trace.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +13,8 @@ spec:
   selector:
     matchLabels:
       app: citizenapi
-  strategy: {}
+  strategy: 
+    type: Recreate
   template:
     metadata:
       name: citizenapi
@@ -20,7 +24,7 @@ spec:
     spec:
       containers:
         - name: citizenapi
-          image: mpapas/citizenapi:gcpV4
+          image: mpapas/citizenapi:gcpV16
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
@@ -28,9 +32,9 @@ spec:
             - containerPort: 3019
           resources:
             limits:
-              memory: 600Mi
+              memory: 400Mi
             requests:
-              memory: 300Mi
+              memory: 200Mi
           env:
             - name: MONGO_CONNECTION_STRING
               valueFrom:

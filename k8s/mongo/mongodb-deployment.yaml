@@ -10,6 +10,8 @@ spec:
   selector:
     matchLabels:
       app: mongodb
+  strategy: 
+    type: Recreate      
   template:
     metadata:
       namespace: citizerve
@@ -32,7 +34,11 @@ spec:
                 secretKeyRef:
                   name: mongodb-secret
                   key: mongo-root-password
-          resources: {}
+          resources:
+            limits:
+              memory: 900Mi
+            requests:
+              memory: 500Mi      
           volumeMounts:
             - mountPath: /data/db
               name: db

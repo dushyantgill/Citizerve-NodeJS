@@ -1,3 +1,6 @@
+# Description: 
+# Deployment for resourceapi specifically for GCP. Deploys a container image of the API that uses
+#   Cloud Trace.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +13,8 @@ spec:
   selector:
     matchLabels:
       app: resourceapi
-  strategy: {}
+  strategy: 
+    type: Recreate
   template:
     metadata:
       name: resourceapi
@@ -20,12 +24,16 @@ spec:
     spec:
       containers:
         - name: resourceapi
-          image: mpapas/resourceapi:gcpV4
+          image: mpapas/resourceapi:gcpV5
           imagePullPolicy: Always
           ports:
             - containerPort: 8082
             - containerPort: 4009
-          resources: {}
+          resources:
+            limits:
+              memory: 400Mi
+            requests:
+              memory: 200Mi
           env:
             - name: MONGO_CONNECTION_STRING
               valueFrom:

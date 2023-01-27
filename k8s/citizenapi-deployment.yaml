@@ -10,7 +10,8 @@ spec:
   selector:
     matchLabels:
       app: citizenapi
-  strategy: {}
+  strategy: 
+    type: Recreate
   template:
     metadata:
       name: citizenapi
@@ -28,9 +29,9 @@ spec:
             - containerPort: 3019
           resources:
             limits:
-              memory: 600Mi
+              memory: 400Mi
             requests:
-              memory: 300Mi
+              memory: 200Mi
           env:
             - name: MONGO_CONNECTION_STRING
               valueFrom:

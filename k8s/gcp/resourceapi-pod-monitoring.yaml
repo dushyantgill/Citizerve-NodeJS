@@ -2,6 +2,7 @@ apiVersion: monitoring.googleapis.com/v1
 kind: PodMonitoring
 metadata:
   name: resourceapi-podmonitoring
+  namespace: citizerve  
 spec:
   selector:
     matchLabels:

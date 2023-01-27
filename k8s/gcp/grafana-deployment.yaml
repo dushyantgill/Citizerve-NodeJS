@@ -26,7 +26,11 @@ spec:
           ports:
             - name: web
               containerPort: 3000
-          resources: {}
+          resources:
+            limits:
+              memory: 800Mi
+            requests:
+              memory: 500Mi
           volumeMounts:
             - mountPath: /etc/grafana/provisioning/datasources
               name: grafana-ds

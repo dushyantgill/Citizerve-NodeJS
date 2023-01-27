@@ -21,6 +21,11 @@ spec:
       containers:
       - name: prometheus-frontend
         image: "gke.gcr.io/prometheus-engine/frontend:v0.5.0-gke.0"
+        resources:
+          limits:
+            memory: 600Mi
+          requests:
+            memory: 400Mi        
         args:
         - "--web.listen-address=:9090"
         - "--query.project-id=sandbox-michael-344216"

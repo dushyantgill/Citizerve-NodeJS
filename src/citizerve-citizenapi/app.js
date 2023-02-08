@@ -12,7 +12,7 @@ const app = express();
 const environment = process.env.NODE_ENV || 'development';
 let mongoConnectionString = null;
 
-if (environment === 'kubernetes') {
+if (environment === 'kubernetes' || environment === 'eks') {
   mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
 } else {
   mongoConnectionString = config.mongoDbSettings.connectionString;

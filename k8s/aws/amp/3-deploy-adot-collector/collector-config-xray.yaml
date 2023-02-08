@@ -1,0 +1,36 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: my-collector-xray
+spec:
+  mode: deployment 
+  resources:
+    requests:
+      cpu: "1"
+    limits:
+      cpu: "1"
+  serviceAccount: adot-collector
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+
+    processors:
+      batch/traces:
+        timeout: 1s
+        send_batch_size: 50
+
+    exporters:
+      logging:
+        loglevel: debug
+      awsxray:
+        region: 'us-east-2'
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch/traces]
+          exporters: [awsxray]

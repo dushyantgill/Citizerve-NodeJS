@@ -75,5 +75,23 @@
       "appOTelMetricsPort": 3019,
       "tracesEndpoint": "http://jaeger-service:4318"      
     }
+  },
+  "eks": {
+    "serviceSettings": { 
+      "resourceAPISettings": { 
+        "hostname": "resourceapi-service",
+        "path": "/api/resources",
+        "port": "8082"
+      } 
+    },
+    "appSettings": {
+      "port": 8081
+    },
+    "monitoringSettings": {
+      "nodePlatformMetricsPort": 3009,
+      "appOTelMetricsPort": 3019,
+      "tracesEndpoint": "http://my-collector-xray-collector.default.svc.cluster.local:4318"      
+    }
   }
+
 }

@@ -18,6 +18,9 @@ spec:
       namespace: citizerve
       labels:
         app: resourceapi
+      annotations:
+        scrape: "true"
+        prometheus.io/scrape: "true"          
     spec:
       containers:
         - name: resourceapi
@@ -66,5 +69,10 @@ spec:
     - protocol: TCP
       port: 8082
       targetPort: 8082
+      name: web
+    # - protocol: TCP
+    #   port: 4009
+    #   targetPort: 4009
+    #   name: metrics
   selector:
     app: resourceapi

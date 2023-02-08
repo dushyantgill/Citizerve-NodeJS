@@ -21,14 +21,14 @@ spec:
       containers:
         - image: bash:latest
           command:
-            - "bin/bash"
+            - "bash"
             - "-c"
             - "while true; do echo hello; sleep 10;done"
           imagePullPolicy: Always
           name: no-start-generator
           resources:
             limits:
-              memory: 3Gi
+              memory: 8Gi
             requests:
-              memory: 2Gi
+              memory: 6Gi
       restartPolicy: Always

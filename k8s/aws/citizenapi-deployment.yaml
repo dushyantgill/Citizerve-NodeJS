@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: citizenapi
-          image: mpapas/citizenapi:v4
+          image: mpapas/citizenapi:awsV11
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
@@ -56,6 +56,13 @@ spec:
                 configMapKeyRef:
                   name: citizerve-configmap
                   key: USE_ZIPKIN
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: OTEL_EXPORTER_OTLP_ENDPOINT
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.namespace=Citizerve,service.name=CitizenAPI
 ---
 apiVersion: v1
 kind: Service

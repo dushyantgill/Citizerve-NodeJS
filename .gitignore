@@ -132,3 +132,8 @@ dist
 .vscode
 
 .DS_Store
+
+PermissionPolicyIngest.json
+PermissionPolicyQuery.json
+TrustPolicy.json
+PermissionPolicy.json

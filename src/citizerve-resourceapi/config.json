@@ -44,6 +44,15 @@
       "tracesEndpoint": "http://jaeger-service:4318"      
     }
   },  
+  "eks": {
+    "appSettings": {
+      "port": 8082
+    },
+    "monitoringSettings": {
+      "metricsPort": 4009,
+      "tracesEndpoint": "http://my-collector-xray-collector.default.svc.cluster.local:4318"      
+    }
+  },  
   "production": {
     "mongoDbSettings": {
       "connectionString": "mongodb://citizerve-mongodb-prod-us:<password>@citizerve-mongodb-prod-us.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@citizerve-mongodb-prod-us@"

@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: resourceapi
-          image: mpapas/resourceapi:v4
+          image: mpapas/resourceapi:azureV1
           imagePullPolicy: Always
           ports:
             - containerPort: 8082
@@ -54,7 +54,12 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: citizerve-configmap
-                  key: USE_ZIPKIN                  
+                  key: USE_ZIPKIN
+            - name: APP_INSIGHTS_CONNECTION_STRING
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: APP_INSIGHTS_CONNECTION_STRING                                
 ---
 apiVersion: v1
 kind: Service

@@ -71,13 +71,13 @@ spec:
       port: 8081
       targetPort: 8081
       name: web
-    # - protocol: TCP
-    #   port: 3009
-    #   targetPort: 3009
-    #   name: metrics
-    # - protocol: TCP
-    #   port: 3019
-    #   targetPort: 3019
-    #   name: otelmetrics
+    - protocol: TCP
+      port: 3009
+      targetPort: 3009
+      name: metrics
+    - protocol: TCP
+      port: 3019
+      targetPort: 3019
+      name: otelmetrics
   selector:
     app: citizenapi

@@ -1,34 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: resourceapi
+  name: citizenapi
   namespace: citizerve
   labels:
-    app: resourceapi
+    app: citizenapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: resourceapi
+      app: citizenapi
   strategy: 
     type: Recreate
   template:
     metadata:
-      name: resourceapi
+      name: citizenapi
       namespace: citizerve
       labels:
-        app: resourceapi
+        app: citizenapi
       annotations:
         scrape: "true"
-        prometheus.io/scrape: "true"          
+        prometheus.io/scrape: "true"    
     spec:
       containers:
-        - name: resourceapi
-          image: mpapas/resourceapi:v4
+        - name: citizenapi
+          image: mpapas/citizenapi:azureV1
           imagePullPolicy: Always
           ports:
-            - containerPort: 8082
-            - containerPort: 4009
+            - containerPort: 8081
+            - containerPort: 3009
+            - containerPort: 3019
           resources:
             limits:
               memory: 400Mi
@@ -54,25 +55,34 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: citizerve-configmap
-                  key: USE_ZIPKIN                  
+                  key: USE_ZIPKIN
+            - name: APP_INSIGHTS_CONNECTION_STRING
+              valueFrom:
+                configMapKeyRef:
+                  name: citizerve-configmap
+                  key: APP_INSIGHTS_CONNECTION_STRING                
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: resourceapi-service
+  name: citizenapi-service
   namespace: citizerve
   labels:
-    app: resourceapi
+    app: citizenapi
 spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8081
+      targetPort: 8081
       name: web
     - protocol: TCP
-      port: 4009
-      targetPort: 4009
+      port: 3009
+      targetPort: 3009
       name: metrics
+    - protocol: TCP
+      port: 3019
+      targetPort: 3019
+      name: otelmetrics
   selector:
-    app: resourceapi
+    app: citizenapi

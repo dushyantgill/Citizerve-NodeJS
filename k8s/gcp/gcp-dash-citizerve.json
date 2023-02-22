@@ -1,0 +1,376 @@
+{
+  "displayName": "Citizerve",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 4,
+        "widget": {
+          "title": "Citizen API Heap Size Used",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "prometheusQuery": "nodejs_heap_size_used_bytes{app=\"citizerve-citizenapi\"}"
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "yPos": 8
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "Citizen API Request Rate (per minute)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "prometheusQuery": "sum(api_request_count_total - api_request_count_total offset 1m)"
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 8
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "Resource API Heap Size Used",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "prometheusQuery": "nodejs_heap_size_used_bytes{app=\"citizerve-resourceapi\"}"
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 4
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "value": 100
+              }
+            ],
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_PERCENTILE_95",
+                  "perSeriesAligner": "ALIGN_DELTA"
+                },
+                "filter": "metric.type=\"prometheus.googleapis.com/api_response_latency_milliseconds/histogram\" resource.type=\"prometheus_target\""
+              }
+            }
+          },
+          "title": "prometheus/api_response_latency_milliseconds/histogram [95TH PERCENTILE]"
+        },
+        "width": 4,
+        "yPos": 12
+      },
+      {
+        "height": 4,
+        "widget": {
+          "logsPanel": {
+            "filter": "resource.labels.namespace_name=\"citizerve\"\r\nresource.labels.location=\"us-central1-c\"\r\nresource.labels.container_name=\"citizenapi\"\r\nresource.labels.project_id=\"sandbox-michael-344216\"\r\nresource.labels.cluster_name=\"mcpgke1\"\r\n--Hide similar entries\r\n-(textPayload=~\"Leaking memory \\.\\.\\.\")\r\n--End of hide similar entries\r\n--Show similar entries\r\n",
+            "resourceNames": [
+              "projects/1069842434511"
+            ]
+          },
+          "title": "Citizen API Logs"
+        },
+        "width": 6,
+        "yPos": 14
+      },
+      {
+        "height": 4,
+        "widget": {
+          "logsPanel": {
+            "filter": "resource.labels.namespace_name=\"citizerve\"\r\nresource.labels.location=\"us-central1-c\"\r\nresource.labels.container_name=\"resourceapi\"\r\nresource.labels.project_id=\"sandbox-michael-344216\"\r\nresource.labels.cluster_name=\"mcpgke1\"\r\n"
+          },
+          "title": "Resource API Logs"
+        },
+        "width": 6,
+        "yPos": 18
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "SLO Health: 95% of all Requests Under 18ms / Day",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "select_slo_health(\"projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-citizenapi/serviceLevelObjectives/4I3pDEo5RNWquLG8dcOoBw\")",
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "10^2.%"
+                }
+              }
+            ],
+            "thresholds": [
+              {
+                "targetAxis": "Y1",
+                "value": 0.95
+              }
+            ]
+          }
+        },
+        "width": 6
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "SLO Health: 99% of GC duration under 1 second",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "select_slo_health(\"projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-citizenapi/serviceLevelObjectives/5FxLA-HfQSSgeSjX0Ymdfg\")",
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "10^2.%"
+                }
+              }
+            ],
+            "thresholds": [
+              {
+                "targetAxis": "Y1",
+                "value": 0.99
+              }
+            ]
+          }
+        },
+        "width": 6,
+        "xPos": 6
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "SLO Health: 95% of Resource API latency is less than 15ms",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "select_slo_health(\"projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-resourceapi/serviceLevelObjectives/Fyt-9ZL6QaS6HdM8Qfwl1Q\")",
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "10^2.%"
+                }
+              }
+            ],
+            "thresholds": [
+              {
+                "targetAxis": "Y1",
+                "value": 0.95
+              }
+            ]
+          }
+        },
+        "width": 6,
+        "yPos": 4
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "Connection Count by metadata.user_labels.goog-gke-node [SUM]",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metadata.user_labels.\"goog-gke-node\""
+                      ],
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"networking.googleapis.com/vm_flow/connection_count\" resource.type=\"gce_instance\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 12
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "RTT latencies per GKE node by label.cluster_name [50TH PERCENTILE]",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_PERCENTILE_50",
+                      "groupByFields": [
+                        "resource.label.\"cluster_name\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"networking.googleapis.com/node_flow/rtt\" resource.type=\"k8s_node\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 20
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "Egress bytes count per GKE node by label.cluster_name [SUM]",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "resource.label.\"cluster_name\""
+                      ],
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"networking.googleapis.com/node_flow/egress_bytes_count\" resource.type=\"k8s_node\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 16
+      }
+    ]
+  }
+}

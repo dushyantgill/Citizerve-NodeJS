@@ -4,7 +4,7 @@ metadata:
   name: snat-ex
   namespace: citizerve
 spec:
-  replicas: 10
+  replicas: 5
   selector:
     matchLabels:
       app: snat-ex

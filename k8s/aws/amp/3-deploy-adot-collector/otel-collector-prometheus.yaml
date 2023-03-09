@@ -1,23 +1,19 @@
 #
 # OpenTelemetry Collector configuration
-# Metrics pipeline with Prometheus Receiver and Prometheus Remote Write Exporter sending metrics to Amazon Managed Prometheus
+# Replace the variables REGION and WORKSPACE per your target environment
+# Metrics pipeline with Prometheus Receiver and AWS Remote Write Exporter sending metrics to Amazon Managed Prometheus
 #
 ---
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
-  name: my-collector-amp
+  name: observability
+  namespace: prometheus
 spec:
+  image: public.ecr.aws/aws-observability/aws-otel-collector:v0.20.0
   mode: deployment
-  serviceAccount: adot-collector
-  podAnnotations:
-    prometheus.io/scrape: 'true'
-    prometheus.io/port: '8888'
-  resources:
-    requests:
-      cpu: "1"
-    limits:
-      cpu: "1"
+  serviceAccount: amp-iamproxy-ingest-role
+
   config: |
     extensions:
       sigv4auth:
@@ -25,10 +21,6 @@ spec:
         service: "aps"
 
     receivers:
-      #
-      # Scrape configuration for the Prometheus Receiver
-      # This is the same configuration used when Prometheus is installed using the community Helm chart
-      # 
       prometheus:
         config:
           global:
@@ -179,6 +171,7 @@ spec:
             scrape_timeout: 30s
             
           - job_name: prometheus-pushgateway
+            honor_labels: true
             kubernetes_sd_configs:
             - role: service
             relabel_configs:
@@ -303,22 +296,26 @@ spec:
               regex: Pending|Succeeded|Failed|Completed
               source_labels:
               - __meta_kubernetes_pod_phase
-
+                                
     processors:
       batch/metrics:
         timeout: 60s         
 
     exporters:
-      logging:
-        loglevel: debug
       prometheusremotewrite:
-        endpoint: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-4d589447-c213-40fc-ae2d-01f8cd2cecb2/api/v1/remote_write
+        endpoint: "https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-4d589447-c213-40fc-ae2d-01f8cd2cecb2/api/v1/remote_write"
         auth:
           authenticator: sigv4auth
+        # external_labels:
+          # label_name1: some_value1
+          # label_name2: some_value2
 
     service:
       extensions: [sigv4auth]
       pipelines:
+        #
+        # Metrics pipeline for collecting Prometheus metrics and sending them to Amazon Managed Prometheus
+        #
         metrics:
           receivers: [prometheus]
           processors: [batch/metrics]
@@ -366,5 +363,5 @@ roleRef:
   name: otel-prometheus-role
 subjects:
   - kind: ServiceAccount
-    name: adot-collector
-    namespace: default
+    name: amp-iamproxy-ingest-role
+    namespace: prometheus              

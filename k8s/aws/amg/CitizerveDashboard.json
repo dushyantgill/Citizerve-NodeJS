@@ -41,7 +41,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "oCMI3vAVz"
+        "uid": "ochmSVaVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -116,7 +116,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "exemplar": false,
           "expr": "rate(container_cpu_usage_seconds_total{container=\"citizenapi\"}[5m])",
@@ -131,7 +131,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "oCMI3vAVz"
+        "uid": "ochmSVaVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -206,7 +206,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "exemplar": false,
           "expr": "rate(container_memory_usage_bytes{container=\"citizenapi\"}[5m])",
@@ -221,7 +221,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "oCMI3vAVz"
+        "uid": "ochmSVaVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -271,7 +271,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "exemplar": false,
           "expr": "sum(rate(api_response_latency_milliseconds_sum{}[5m])) / sum(rate(api_response_latency_milliseconds_count{}[5m]))",
@@ -286,7 +286,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "oCMI3vAVz"
+        "uid": "ochmSVaVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -334,7 +334,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "exemplar": false,
           "expr": "sum(rate(api_request_count_total{}[5m]))",
@@ -350,7 +350,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "oCMI3vAVz"
+        "uid": "ochmSVaVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -425,7 +425,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "exemplar": false,
           "expr": "sum(rate(nodejs_gc_duration_seconds_sum{exported_app=\"citizerve-citizenapi\"}[5m])) /  sum(rate(nodejs_gc_duration_seconds_count{exported_app=\"citizerve-citizenapi\"}[5m]))",
@@ -440,7 +440,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "oCMI3vAVz"
+        "uid": "ochmSVaVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -515,7 +515,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "exemplar": false,
           "expr": "nodejs_heap_size_used_bytes{exported_app=\"citizerve-citizenapi\"}",
@@ -540,7 +540,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "fieldConfig": {
             "defaults": {
@@ -614,7 +614,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "oCMI3vAVz"
+                "uid": "ochmSVaVz"
               },
               "exemplar": false,
               "expr": "rate(container_cpu_usage_seconds_total{container=\"resourceapi\"}[5m])",
@@ -629,7 +629,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "fieldConfig": {
             "defaults": {
@@ -703,7 +703,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "oCMI3vAVz"
+                "uid": "ochmSVaVz"
               },
               "exemplar": false,
               "expr": "rate(container_memory_usage_bytes{container=\"resourceapi\"}[5m])",
@@ -718,7 +718,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "fieldConfig": {
             "defaults": {
@@ -767,7 +767,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "oCMI3vAVz"
+                "uid": "ochmSVaVz"
               },
               "exemplar": false,
               "expr": "sum(rate(api_response_time_duration_milliseconds_sum{}[5m])) / sum(rate(api_response_time_duration_milliseconds_count{}[5m]))",
@@ -782,7 +782,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "fieldConfig": {
             "defaults": {
@@ -856,7 +856,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "oCMI3vAVz"
+                "uid": "ochmSVaVz"
               },
               "exemplar": false,
               "expr": "nodejs_heap_size_used_bytes{exported_app=\"citizerve-resourceapi\"}",
@@ -871,7 +871,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "oCMI3vAVz"
+            "uid": "ochmSVaVz"
           },
           "fieldConfig": {
             "defaults": {
@@ -945,7 +945,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "oCMI3vAVz"
+                "uid": "ochmSVaVz"
               },
               "exemplar": false,
               "expr": "sum(rate(nodejs_gc_duration_seconds_sum{exported_app=\"citizerve-resourceapi\"}[5m])) /  sum(rate(nodejs_gc_duration_seconds_count{exported_app=\"citizerve-resourceapi\"}[5m]))",
@@ -974,7 +974,7 @@
         {
           "datasource": {
             "type": "cloudwatch",
-            "uid": "7x6WVw04z"
+            "uid": "upm7SVa4z"
           },
           "description": "",
           "fieldConfig": {
@@ -1050,12 +1050,12 @@
             {
               "datasource": {
                 "type": "cloudwatch",
-                "uid": "7x6WVw04z"
+                "uid": "upm7SVa4z"
               },
               "expression": "fields @timestamp, @message\n| filter kubernetes.namespace_name like /citizerve/\n| filter kubernetes.container_name like /citizenapi/\n| sort @timestamp desc\n| limit 20",
               "id": "",
               "logGroupNames": [
-                "/aws/containerinsights/mcpeks2/application"
+                "/aws/containerinsights/mcpeks1/application"
               ],
               "namespace": "",
               "queryMode": "Logs",
@@ -1070,7 +1070,7 @@
         {
           "datasource": {
             "type": "cloudwatch",
-            "uid": "7x6WVw04z"
+            "uid": "upm7SVa4z"
           },
           "description": "",
           "fieldConfig": {
@@ -1146,12 +1146,12 @@
             {
               "datasource": {
                 "type": "cloudwatch",
-                "uid": "7x6WVw04z"
+                "uid": "upm7SVa4z"
               },
               "expression": "fields @timestamp, @message\n| filter kubernetes.namespace_name like /citizerve/\n| filter kubernetes.container_name like /resourceapi/\n| sort @timestamp desc\n| limit 20",
               "id": "",
               "logGroupNames": [
-                "/aws/containerinsights/mcpeks2/application"
+                "/aws/containerinsights/mcpeks1/application"
               ],
               "namespace": "",
               "queryMode": "Logs",
@@ -1166,7 +1166,7 @@
         {
           "datasource": {
             "type": "cloudwatch",
-            "uid": "7x6WVw04z"
+            "uid": "upm7SVa4z"
           },
           "description": "",
           "fieldConfig": {
@@ -1242,12 +1242,12 @@
             {
               "datasource": {
                 "type": "cloudwatch",
-                "uid": "7x6WVw04z"
+                "uid": "upm7SVa4z"
               },
               "expression": "fields @timestamp, @message\n| filter kubernetes.namespace_name like /citizerve/\n| filter kubernetes.container_name like /citizenapi/\n| filter @message not like /stdout/\n| sort @timestamp desc\n| limit 20",
               "id": "",
               "logGroupNames": [
-                "/aws/containerinsights/mcpeks2/application"
+                "/aws/containerinsights/mcpeks1/application"
               ],
               "namespace": "",
               "queryMode": "Logs",
@@ -1262,7 +1262,7 @@
         {
           "datasource": {
             "type": "grafana-x-ray-datasource",
-            "uid": "7IAp4QAVk"
+            "uid": "Ada7S4-Vk"
           },
           "fieldConfig": {
             "defaults": {
@@ -1358,7 +1358,7 @@
             {
               "datasource": {
                 "type": "grafana-x-ray-datasource",
-                "uid": "7IAp4QAVk"
+                "uid": "Ada7S4-Vk"
               },
               "group": {
                 "GroupARN": "arn:aws:xray:us-east-2:886674496073:group/Default",

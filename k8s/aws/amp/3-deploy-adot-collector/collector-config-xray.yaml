@@ -2,6 +2,7 @@ apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
   name: my-collector-xray
+  namespace: prometheus
 spec:
   mode: deployment 
   resources:
@@ -9,7 +10,7 @@ spec:
       cpu: "1"
     limits:
       cpu: "1"
-  serviceAccount: adot-collector
+  serviceAccount: amp-iamproxy-ingest-role
   config: |
     receivers:
       otlp:

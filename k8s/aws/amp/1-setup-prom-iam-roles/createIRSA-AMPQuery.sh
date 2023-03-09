@@ -1,6 +1,6 @@
 #!/bin/bash -e
-CLUSTER_NAME=mcpeks2
-SERVICE_ACCOUNT_NAMESPACE=mcppromworkspace
+CLUSTER_NAME=mcpeks1
+SERVICE_ACCOUNT_NAMESPACE=mcppromws1
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 OIDC_PROVIDER=$(aws eks describe-cluster --name $CLUSTER_NAME --region us-east-2 --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
 SERVICE_ACCOUNT_AMP_QUERY_NAME=amp-iamproxy-query-service-account

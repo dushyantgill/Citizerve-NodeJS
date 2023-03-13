@@ -1,0 +1,26 @@
+{
+    "name": "projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-resourceapi",
+    "displayName": "resourceapi",
+    "telemetry": {
+      "resourceName": "//container.googleapis.com/projects/sandbox-michael-344216/zones/us-central1-c/clusters/mcpgke1/k8s/namespaces/citizerve/apps/deployments/resourceapi"
+    },
+    "gkeWorkload": {
+      "projectId": "sandbox-michael-344216",
+      "location": "us-central1-c",
+      "clusterName": "mcpgke1",
+      "namespaceName": "citizerve",
+      "topLevelControllerType": "Deployment",
+      "topLevelControllerName": "resourceapi"
+    },
+    "basicService": {
+      "serviceType": "GKE_WORKLOAD",
+      "serviceLabels": {
+        "cluster_name": "mcpgke1",
+        "location": "us-central1-c",
+        "namespace_name": "citizerve",
+        "project_id": "sandbox-michael-344216",
+        "top_level_controller_name": "resourceapi",
+        "top_level_controller_type": "Deployment"
+      }
+    }
+  }

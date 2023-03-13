@@ -1,0 +1,17 @@
+{
+    "name": "projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-citizenapi/serviceLevelObjectives/5FxLA-HfQSSgeSjX0Ymdfg",
+    "displayName": "99% of GC duration under 1 second",
+    "goal": 0.99,
+    "calendarPeriod": "DAY",
+    "serviceLevelIndicator": {
+      "requestBased": {
+        "distributionCut": {
+          "distributionFilter": "metric.type=\"prometheus.googleapis.com/nodejs_gc_duration_seconds/histogram\" resource.type=\"prometheus_target\"",
+          "range": {
+            "min": -9007199254740991,
+            "max": 1
+          }
+        }
+      }
+    }
+  }

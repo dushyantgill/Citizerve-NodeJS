@@ -1,0 +1,26 @@
+{
+    "name": "projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-citizenapi",
+    "displayName": "citizenapi",
+    "telemetry": {
+      "resourceName": "//container.googleapis.com/projects/sandbox-michael-344216/zones/us-central1-c/clusters/mcpgke1/k8s/namespaces/citizerve/apps/deployments/citizenapi"
+    },
+    "gkeWorkload": {
+      "projectId": "sandbox-michael-344216",
+      "location": "us-central1-c",
+      "clusterName": "mcpgke1",
+      "namespaceName": "citizerve",
+      "topLevelControllerType": "Deployment",
+      "topLevelControllerName": "citizenapi"
+    },
+    "basicService": {
+      "serviceType": "GKE_WORKLOAD",
+      "serviceLabels": {
+        "cluster_name": "mcpgke1",
+        "location": "us-central1-c",
+        "namespace_name": "citizerve",
+        "project_id": "sandbox-michael-344216",
+        "top_level_controller_name": "citizenapi",
+        "top_level_controller_type": "Deployment"
+      }
+    }
+  }

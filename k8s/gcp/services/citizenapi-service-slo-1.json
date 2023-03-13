@@ -1,0 +1,17 @@
+{
+    "name": "projects/1069842434511/services/wl:sandbox-michael-344216-zone-us-central1-c-mcpgke1-citizerve-Deployment-citizenapi/serviceLevelObjectives/4I3pDEo5RNWquLG8dcOoBw",
+    "displayName": "95% of all Requests Under 18ms / Day",
+    "goal": 0.95,
+    "calendarPeriod": "DAY",
+    "serviceLevelIndicator": {
+      "requestBased": {
+        "distributionCut": {
+          "distributionFilter": "metric.type=\"prometheus.googleapis.com/api_response_latency_milliseconds/histogram\" resource.type=\"prometheus_target\"",
+          "range": {
+            "min": -9007199254740991,
+            "max": 18
+          }
+        }
+      }
+    }
+  }

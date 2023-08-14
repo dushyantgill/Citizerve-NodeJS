@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: citizenapi
-          image: mpapas/citizenapi:awsV12
+          image: mpapas/citizenapi:awsV13
           imagePullPolicy: Always
           ports:
             - containerPort: 8081

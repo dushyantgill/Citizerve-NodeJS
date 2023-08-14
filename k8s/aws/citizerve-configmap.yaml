@@ -9,4 +9,4 @@ data:
   USE_ZIPKIN: 'false'
   COLLECTOR_ZIPKIN_HOST_PORT: ':9411'
   COLLECTOR_OTLP_ENABLED: 'true'
-  OTEL_EXPORTER_OTLP_ENDPOINT: 'http://my-collector-xray-collector.prometheus.svc.cluster.local:4318'
+  OTEL_EXPORTER_OTLP_ENDPOINT: 'http://my-collector-xray-collector.prometheus.svc.cluster.local:4317'

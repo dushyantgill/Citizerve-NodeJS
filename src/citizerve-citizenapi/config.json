@@ -90,7 +90,7 @@
     "monitoringSettings": {
       "nodePlatformMetricsPort": 3009,
       "appOTelMetricsPort": 3019,
-      "tracesEndpoint": "http://my-collector-xray-collector.default.svc.cluster.local:4318"      
+      "tracesEndpoint": "http://my-collector-xray-collector.default.svc.cluster.local:4317"      
     }
   }
 

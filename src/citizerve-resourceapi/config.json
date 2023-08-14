@@ -50,7 +50,7 @@
     },
     "monitoringSettings": {
       "metricsPort": 4009,
-      "tracesEndpoint": "http://my-collector-xray-collector.default.svc.cluster.local:4318"      
+      "tracesEndpoint": "http://my-collector-xray-collector.default.svc.cluster.local:4317"      
     }
   },  
   "production": {

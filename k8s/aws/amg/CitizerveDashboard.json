@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -21,12 +24,16 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -35,13 +42,22 @@
       },
       "id": 4,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Citizen API",
       "type": "row"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ochmSVaVz"
+        "uid": "PlYcdC6Vk"
       },
       "fieldConfig": {
         "defaults": {
@@ -49,6 +65,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -105,7 +123,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -116,7 +135,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "exemplar": false,
           "expr": "rate(container_cpu_usage_seconds_total{container=\"citizenapi\"}[5m])",
@@ -131,7 +150,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ochmSVaVz"
+        "uid": "PlYcdC6Vk"
       },
       "fieldConfig": {
         "defaults": {
@@ -139,6 +158,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -195,7 +216,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -206,7 +228,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "exemplar": false,
           "expr": "rate(container_memory_usage_bytes{container=\"citizenapi\"}[5m])",
@@ -221,7 +243,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ochmSVaVz"
+        "uid": "PlYcdC6Vk"
       },
       "fieldConfig": {
         "defaults": {
@@ -266,12 +288,12 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.4.7",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "exemplar": false,
           "expr": "sum(rate(api_response_latency_milliseconds_sum{}[5m])) / sum(rate(api_response_latency_milliseconds_count{}[5m]))",
@@ -286,7 +308,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ochmSVaVz"
+        "uid": "PlYcdC6Vk"
       },
       "fieldConfig": {
         "defaults": {
@@ -329,12 +351,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.4.7",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "exemplar": false,
           "expr": "sum(rate(api_request_count_total{}[5m]))",
@@ -350,7 +372,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ochmSVaVz"
+        "uid": "PlYcdC6Vk"
       },
       "fieldConfig": {
         "defaults": {
@@ -358,6 +380,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -414,7 +438,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -425,7 +450,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "exemplar": false,
           "expr": "sum(rate(nodejs_gc_duration_seconds_sum{exported_app=\"citizerve-citizenapi\"}[5m])) /  sum(rate(nodejs_gc_duration_seconds_count{exported_app=\"citizerve-citizenapi\"}[5m]))",
@@ -440,7 +465,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "ochmSVaVz"
+        "uid": "PlYcdC6Vk"
       },
       "fieldConfig": {
         "defaults": {
@@ -448,6 +473,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -504,7 +531,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -515,7 +543,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "exemplar": false,
           "expr": "nodejs_heap_size_used_bytes{exported_app=\"citizerve-citizenapi\"}",
@@ -529,6 +557,10 @@
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -540,7 +572,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "fieldConfig": {
             "defaults": {
@@ -603,7 +635,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
               "mode": "single",
@@ -614,7 +647,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "ochmSVaVz"
+                "uid": "PlYcdC6Vk"
               },
               "exemplar": false,
               "expr": "rate(container_cpu_usage_seconds_total{container=\"resourceapi\"}[5m])",
@@ -629,7 +662,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "fieldConfig": {
             "defaults": {
@@ -692,7 +725,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
               "mode": "single",
@@ -703,7 +737,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "ochmSVaVz"
+                "uid": "PlYcdC6Vk"
               },
               "exemplar": false,
               "expr": "rate(container_memory_usage_bytes{container=\"resourceapi\"}[5m])",
@@ -718,7 +752,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "fieldConfig": {
             "defaults": {
@@ -767,7 +801,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "ochmSVaVz"
+                "uid": "PlYcdC6Vk"
               },
               "exemplar": false,
               "expr": "sum(rate(api_response_time_duration_milliseconds_sum{}[5m])) / sum(rate(api_response_time_duration_milliseconds_count{}[5m]))",
@@ -782,7 +816,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "fieldConfig": {
             "defaults": {
@@ -845,7 +879,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
               "mode": "single",
@@ -856,7 +891,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "ochmSVaVz"
+                "uid": "PlYcdC6Vk"
               },
               "exemplar": false,
               "expr": "nodejs_heap_size_used_bytes{exported_app=\"citizerve-resourceapi\"}",
@@ -871,7 +906,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ochmSVaVz"
+            "uid": "PlYcdC6Vk"
           },
           "fieldConfig": {
             "defaults": {
@@ -934,7 +969,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
               "mode": "single",
@@ -945,7 +981,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "ochmSVaVz"
+                "uid": "PlYcdC6Vk"
               },
               "exemplar": false,
               "expr": "sum(rate(nodejs_gc_duration_seconds_sum{exported_app=\"citizerve-resourceapi\"}[5m])) /  sum(rate(nodejs_gc_duration_seconds_count{exported_app=\"citizerve-resourceapi\"}[5m]))",
@@ -958,11 +994,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Resource API",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -974,7 +1023,7 @@
         {
           "datasource": {
             "type": "cloudwatch",
-            "uid": "upm7SVa4z"
+            "uid": "SnI2dj6Vz"
           },
           "description": "",
           "fieldConfig": {
@@ -984,7 +1033,9 @@
               },
               "custom": {
                 "align": "auto",
-                "displayMode": "auto"
+                "cellOptions": {
+                  "type": "auto"
+                }
               },
               "mappings": [],
               "thresholds": {
@@ -1050,7 +1101,7 @@
             {
               "datasource": {
                 "type": "cloudwatch",
-                "uid": "upm7SVa4z"
+                "uid": "SnI2dj6Vz"
               },
               "expression": "fields @timestamp, @message\n| filter kubernetes.namespace_name like /citizerve/\n| filter kubernetes.container_name like /citizenapi/\n| sort @timestamp desc\n| limit 20",
               "id": "",
@@ -1070,7 +1121,7 @@
         {
           "datasource": {
             "type": "cloudwatch",
-            "uid": "upm7SVa4z"
+            "uid": "SnI2dj6Vz"
           },
           "description": "",
           "fieldConfig": {
@@ -1080,7 +1131,9 @@
               },
               "custom": {
                 "align": "auto",
-                "displayMode": "auto"
+                "cellOptions": {
+                  "type": "auto"
+                }
               },
               "mappings": [],
               "thresholds": {
@@ -1146,7 +1199,7 @@
             {
               "datasource": {
                 "type": "cloudwatch",
-                "uid": "upm7SVa4z"
+                "uid": "SnI2dj6Vz"
               },
               "expression": "fields @timestamp, @message\n| filter kubernetes.namespace_name like /citizerve/\n| filter kubernetes.container_name like /resourceapi/\n| sort @timestamp desc\n| limit 20",
               "id": "",
@@ -1166,7 +1219,7 @@
         {
           "datasource": {
             "type": "cloudwatch",
-            "uid": "upm7SVa4z"
+            "uid": "SnI2dj6Vz"
           },
           "description": "",
           "fieldConfig": {
@@ -1176,7 +1229,9 @@
               },
               "custom": {
                 "align": "auto",
-                "displayMode": "auto"
+                "cellOptions": {
+                  "type": "auto"
+                }
               },
               "mappings": [],
               "thresholds": {
@@ -1242,7 +1297,7 @@
             {
               "datasource": {
                 "type": "cloudwatch",
-                "uid": "upm7SVa4z"
+                "uid": "SnI2dj6Vz"
               },
               "expression": "fields @timestamp, @message\n| filter kubernetes.namespace_name like /citizerve/\n| filter kubernetes.container_name like /citizenapi/\n| filter @message not like /stdout/\n| sort @timestamp desc\n| limit 20",
               "id": "",
@@ -1262,13 +1317,15 @@
         {
           "datasource": {
             "type": "grafana-x-ray-datasource",
-            "uid": "Ada7S4-Vk"
+            "uid": "ROXhOCe4k"
           },
           "fieldConfig": {
             "defaults": {
               "custom": {
                 "align": "auto",
-                "displayMode": "auto"
+                "cellOptions": {
+                  "type": "auto"
+                }
               },
               "mappings": [],
               "thresholds": {
@@ -1358,7 +1415,7 @@
             {
               "datasource": {
                 "type": "grafana-x-ray-datasource",
-                "uid": "Ada7S4-Vk"
+                "uid": "ROXhOCe4k"
               },
               "group": {
                 "GroupARN": "arn:aws:xray:us-east-2:886674496073:group/Default",
@@ -1378,12 +1435,22 @@
           "type": "table"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Logs and Traces",
       "type": "row"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 35,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1397,6 +1464,6 @@
   "timezone": "",
   "title": "Citizerve",
   "uid": "kU5fIQ04z",
-  "version": 42,
+  "version": 1,
   "weekStart": ""
 }

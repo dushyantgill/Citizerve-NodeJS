@@ -9,8 +9,8 @@ spec:
       app: citizenapi
   endpoints:
   - port: 3009
-    interval: 10s
+    interval: 30s
     scheme: http
   - port: 3019
-    interval: 10s
+    interval: 30s
     scheme: http
